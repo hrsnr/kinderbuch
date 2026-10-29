@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ein toller Tag im Ferienhaus - Ein Kinderbuch</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Fredoka & Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'story-creme': '#FFFDF7',
+                        'story-gelb': '#FEF3C7',
+                        'story-blau': '#E0F2FE',
+                        'story-mint': '#DCFCE7',
+                        'story-rosa': '#FCE7F3',
+                        'story-orange': '#FFEDD5',
+                        'accent-orange': '#F97316',
+                        'accent-blau': '#0284C7',
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'cursive', 'sans-serif'],
+                        nunito: ['Nunito', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'kachel': '0 12px 30px -8px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04)',
+                        'hover-kachel': '0 20px 35px -6px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.06)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FAF8F5;
+            background-image: radial-gradient(#FDE68A 1px, transparent 1px), radial-gradient(#BAE6FD 1px, #FAF8F5 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+
+        .animate-float {
+            animation: float-gentle 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between selection:bg-amber-200">
+
+    <!-- OBERER BALKEN / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b-2 border-amber-100 py-3 px-4 shadow-sm">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl animate-bounce">📖</span>
+                <div>
+                    <h1 class="font-fredoka font-bold text-xl md:text-2xl text-amber-900 leading-tight">
+                        EIn toller Tag im Ferienhaus
+                    </h1>
+                    <p class="text-xs md:text-sm text-slate-500 font-nunito hidden sm:block">Bilderbuch mit Geschichten von 4 kleinen Rackern</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button id="btn-font-toggle" title="Schriftgröße anpassen" class="px-3 py-1.5 rounded-full bg-amber-100 hover:bg-amber-200 text-amber-900 font-fredoka text-sm transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-text-height"></i>
+                    <span class="hidden md:inline">Schriftgröße</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- BUCH TITEL / COVER BEREICH -->
+    <section class="max-w-5xl mx-auto px-4 pt-10 pb-6 text-center">
+        <div class="inline-block bg-amber-100/90 text-amber-800 font-fredoka font-semibold px-4 py-1.5 rounded-full text-sm mb-4 border border-amber-200 shadow-sm animate-float">
+            ✨ Interaktives Kinderbuch zum Lesen, Schauen und Hören
+        </div>
+        <h2 class="font-fredoka text-4xl sm:text-5xl md:text-6xl font-bold text-amber-950 tracking-wide mb-4">
+            Ein toller Tag im Ferienhaus
+        </h2>
+        <p class="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+            Komm mit zu einem spannenden Tag im Ferienhaus. Lies den Text, starte die Videos und lass dir die Geschichten von Thorsten vorlesen.
+        </p>
+
+        <div class="mt-6">
+            <a href="#seite-1" class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-white font-fredoka text-lg font-bold px-8 py-3.5 rounded-full shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5 transition-all">
+                <span>Geschichten starten</span>
+                <i class="fa-solid fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- HAUPTTEIL: DIE BUCHSEITEN -->
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-16 sm:space-y-24">
+
+            <!-- ================= SEITE 1: VIDEO - Ankunft ================= -->
+        <article id="seite-1" class="scroll-mt-24 bg-white/90 rounded-[2.5rem] p-6 sm:p-10 shadow-kachel hover:shadow-hover-kachel border-4 border-sky-100/80 transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+                <div class="lg:col-span-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center gap-1.5 font-fredoka font-bold text-sky-600 bg-sky-100 px-4 py-1.5 rounded-2xl text-sm">
+                            <i class="fa-solid fa-cloud text-sky-400"></i> Kapitel 1
+                        </span>
+
+                        <button onclick="playAudio('voice/kapitel1.wav', this)" class="audio-btn flex items-center gap-2 bg-sky-100 hover:bg-sky-200 text-sky-800 font-fredoka text-xs sm:text-sm px-3.5 py-1.5 rounded-full transition active:scale-95">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Vorlesen</span>
+                        </button>
+                    </div>
+
+                    <h3 class="font-fredoka text-2xl sm:text-3xl font-bold text-slate-800">
+                        Ankunft am Ferienhaus
+                    </h3>
+
+                    <p id="story-text-2" class="story-paragraph text-slate-700 text-lg sm:text-xl leading-relaxed">
+                        Hurra, wie sind endlich da! Nach der langen Autofahrt sind wir endlich am Ferienhaus angekommen. 
+                        Wir sind dieses mal in Belgien. Ab jetzt kann der Urlaub richtig losgehen. Alle deine Freunde sind auch da und freuen sich auf dich. 
+                        Henri, Jano, Felix und Charlotte wollen viel lachen, spielen und jede Menge Quatsch machen. 
+                    </p>
+
+                    <div class="inline-block bg-sky-50 text-sky-800 text-sm px-4 py-2 rounded-2xl border border-sky-200">
+                        🎥 <strong>Schau dir das Video an:</strong> Drücke einfach auf das Play-Dreieck!
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="relative group overflow-hidden rounded-3xl bg-slate-900 border-4 border-white shadow-md aspect-video flex items-center justify-center cursor-pointer select-none" onclick="togglePlay(this)">
+                        
+                        <video 
+                            playsinline
+                            preload="metadata"
+                            poster="bilder/4kinder.jpeg"
+                            class="w-full h-full object-cover rounded-3xl pointer-events-none"
+                        >
+                            <source src="video/lachen.mp4" type="video/mp4">
+                            Dein Browser unterstützt dieses Video nicht.
+                        </video>
+
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center bg-black/25 transition-opacity duration-300">
+                            <div class="w-20 h-20 bg-amber-400 hover:bg-amber-300 text-amber-950 rounded-full flex items-center justify-center shadow-xl transform transition-transform group-hover:scale-110">
+                                <svg class="w-10 h-10 ml-1.5 fill-current" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-xl text-xs font-fredoka text-sky-900 shadow pointer-events-none">
+                            🎬 Video
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+            <!-- ================= SEITE 2: VIDEO - Legoburg ================= -->
+        <article id="seite-2" class="scroll-mt-24 bg-white/90 rounded-[2.5rem] p-6 sm:p-10 shadow-kachel hover:shadow-hover-kachel border-4 border-sky-100/80 transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+                <div class="lg:col-span-6 order-1 lg:order-2 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center gap-1.5 font-fredoka font-bold text-amber-600 bg-amber-100 px-4 py-1.5 rounded-2xl text-sm">
+                            <i class="fa-solid fa-star text-amber-400"></i> Kapitel 2
+                        </span>
+
+                        <button onclick="playAudio('voice/legoburg.wav', this)" class="audio-btn flex items-center gap-2 bg-sky-100 hover:bg-sky-200 text-sky-800 font-fredoka text-xs sm:text-sm px-3.5 py-1.5 rounded-full transition active:scale-95">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Vorlesen</span>
+                        </button>
+                    </div>
+
+                    <h3 class="font-fredoka text-2xl sm:text-3xl font-bold text-slate-800">
+                        Die Ritterburg
+                    </h3>
+
+                    <p id="story-text-2" class="story-paragraph text-slate-700 text-lg sm:text-xl leading-relaxed">
+                        Schau mal! Henri und Charlotte haben eine RIESIGE Ritterburg aus Lego gebaut. Die Burg ist so groß, sie reicht fast bis zur Zimmerdecke.
+                        Jetzt fehlen nur noch die tapferen Ritter um die holden Fräuleins zu beschützen. 
+                        Los, alle schnell rein in die Burg. Jano und Felix sollen zu tapferen Rittern werden. Doch was passiert denn da in der Burg?
+                    </p>
+
+                    <div class="inline-block bg-sky-50 text-sky-800 text-sm px-4 py-2 rounded-2xl border border-sky-200">
+                        🎥 <strong>Schau dir das Video an:</strong> Drücke einfach auf das Play-Dreieck!
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="relative group overflow-hidden rounded-3xl bg-slate-900 border-4 border-white shadow-md aspect-video flex items-center justify-center cursor-pointer select-none" onclick="togglePlay(this)">
+                        
+                        <video 
+                            playsinline
+                            preload="metadata"
+                            poster="bilder/lego_burg.jpeg"
+                            class="w-full h-full object-cover rounded-3xl pointer-events-none"
+                        >
+                            <source src="video/legoburg.mp4" type="video/mp4">
+                            Dein Browser unterstützt dieses Video nicht.
+                        </video>
+
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center bg-black/25 transition-opacity duration-300">
+                            <div class="w-20 h-20 bg-amber-400 hover:bg-amber-300 text-amber-950 rounded-full flex items-center justify-center shadow-xl transform transition-transform group-hover:scale-110">
+                                <svg class="w-10 h-10 ml-1.5 fill-current" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-xl text-xs font-fredoka text-sky-900 shadow pointer-events-none">
+                            🎬 Video
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+            <!-- ================= SEITE 3: VIDEO - Bobbycar ================= -->
+        <article id="seite-3" class="scroll-mt-24 bg-white/90 rounded-[2.5rem] p-6 sm:p-10 shadow-kachel hover:shadow-hover-kachel border-4 border-sky-100/80 transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+                <div class="lg:col-span-6 order-1 lg:order-2 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center gap-1.5 font-fredoka font-bold text-amber-600 bg-amber-100 px-4 py-1.5 rounded-2xl text-sm">
+                            <i class="fa-solid fa-star text-amber-400"></i> Kapitel 3
+                        </span>
+
+                        <button onclick="playAudio('voice/bobbycar.wav', this)" class="audio-btn flex items-center gap-2 bg-sky-100 hover:bg-sky-200 text-sky-800 font-fredoka text-xs sm:text-sm px-3.5 py-1.5 rounded-full transition active:scale-95">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Vorlesen</span>
+                        </button>
+                    </div>
+
+                    <h3 class="font-fredoka text-2xl sm:text-3xl font-bold text-slate-800">
+                        Das Bobbycar Rennen
+                    </h3>
+
+                    <p id="story-text-3" class="story-paragraph text-slate-700 text-lg sm:text-xl leading-relaxed">
+                       Jetzt werden die Bobby-Cars aus der Garage geholt. Charlotte und Henri liefern sich ein wildes Rennen durch das Ferienhaus. 
+                       Herum um den großen Tisch und durchs Wohnzimmer. Jano und Felix ist das wilde Rennen noch etwas unheimlich. 
+                       Schnell die Helme aufsetzen damit nix passieren kann und dann geht die wilde Fahr weiter.
+                    </p>
+
+                    <div class="inline-block bg-sky-50 text-sky-800 text-sm px-4 py-2 rounded-2xl border border-sky-200">
+                        🎥 <strong>Schau dir das Video an:</strong> Drücke einfach auf das Play-Dreieck!
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="relative group overflow-hidden rounded-3xl bg-slate-900 border-4 border-white shadow-md aspect-video flex items-center justify-center cursor-pointer select-none" onclick="togglePlay(this)">
+                        
+                        <video 
+                            playsinline
+                            preload="metadata"
+                            poster="bilder/bobbycar.jpeg"
+                            class="w-full h-full object-cover rounded-3xl pointer-events-none"
+                        >
+                            <source src="video/bobbycar.mp4" type="video/mp4">
+                            Dein Browser unterstützt dieses Video nicht.
+                        </video>
+
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center bg-black/25 transition-opacity duration-300">
+                            <div class="w-20 h-20 bg-amber-400 hover:bg-amber-300 text-amber-950 rounded-full flex items-center justify-center shadow-xl transform transition-transform group-hover:scale-110">
+                                <svg class="w-10 h-10 ml-1.5 fill-current" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-xl text-xs font-fredoka text-sky-900 shadow pointer-events-none">
+                            🎬 Video
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+            <!-- ================= SEITE 4: BILD - Mittagessen ================= -->
+        <article id="seite-3" class="scroll-mt-24 bg-white/90 rounded-[2.5rem] p-6 sm:p-10 shadow-kachel hover:shadow-hover-kachel border-4 border-amber-100/70 transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-6 order-2 lg:order-1">
+                    <div class="relative group overflow-hidden rounded-3xl bg-amber-50 border-4 border-white shadow-md aspect-4/3 flex items-center justify-center">
+                        <img 
+                            src="Bilder/küchen.jpeg" 
+                            alt="DIe Kinder machen eine riesen Sauerei mit Spaghetti mit Tomatensoße" 
+                            class="w-full h-full object-cover rounded-3xl transition duration-500 group-hover:scale-105"
+                            onerror="this.style.display='none'; document.getElementById('fallback-img-1').classList.remove('hidden');"
+                        >
+
+                        <div id="fallback-img-1" class="hidden absolute inset-0 bg-gradient-to-tr from-amber-200 via-orange-100 to-sky-100 flex flex-col items-center justify-center p-6 text-center">
+                            <span class="text-6xl mb-3">🐰 ☀️</span>
+                            <p class="font-fredoka font-semibold text-amber-900 text-lg">Bilder/küchen.jpeg</p>
+                            <span class="text-xs text-amber-700 bg-white/70 px-3 py-1 rounded-full mt-2">
+                                Datei im Ordner "Bilder" ablegen
+                            </span>
+                        </div>
+
+                        <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-xl text-xs font-fredoka text-amber-900 shadow">
+                            📷 Bild
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 order-1 lg:order-2 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center gap-1.5 font-fredoka font-bold text-amber-600 bg-amber-100 px-4 py-1.5 rounded-2xl text-sm">
+                            <i class="fa-solid fa-star text-amber-400"></i> Kapitel 4
+                        </span>
+                        
+                        <!-- Vorlese-Button mit lokaler WAV-Datei -->
+                        <button onclick="playAudio('voice/essen.wav', this)" class="audio-btn flex items-center gap-2 bg-sky-100 hover:bg-sky-200 text-sky-800 font-fredoka text-xs sm:text-sm px-3.5 py-1.5 rounded-full transition active:scale-95">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Vorlesen</span>
+                        </button>
+                    </div>
+
+                    <h3 class="font-fredoka text-2xl sm:text-3xl font-bold text-slate-800">
+                        Mittagessen
+                    </h3>
+
+                    <p id="story-text-1" class="story-paragraph text-slate-700 text-lg sm:text-xl leading-relaxed">
+                        Nach soviel Spaß, Spielen, Lachen und Action haben alle richtig großen Hunger. Aus der Küche duftet es nach leckerem Essen. 
+                        Henri und Charlotte schnappen sich Jano und Felix und schauen nach, was es Leckeres gibt. Da steht eine riesige Schüssel Spaghetti mit Tomatensoße.
+                        Alle haben riesigen Hunger und schlagen sich die Bäuche mit den leckeren Nudeln voll. Es entsteht eine große Sauerei beim Essen aber es ist doch soooo lecker.
+
+                    <div class="pt-2 flex items-center gap-2 text-slate-400 text-sm font-fredoka">
+                        <span>Tipp: Klicke auf "Vorlesen", um die Tonspur abzuspielen! 🔊</span>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- ================= SEITE 5: BILD - Draußen ================= -->
+        <article id="seite-5" class="scroll-mt-24 bg-white/90 rounded-[2.5rem] p-6 sm:p-10 shadow-kachel hover:shadow-hover-kachel border-4 border-emerald-100/80 transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-6 order-2 lg:order-1">
+                    <div class="relative group overflow-hidden rounded-3xl bg-emerald-50 border-4 border-white shadow-md aspect-4/3 flex items-center justify-center">
+                        <img 
+                            src="Bilder/draußen.jpeg" 
+                            alt="Die Kinder spielen draußen mit einem riesigen Fußball" 
+                            class="w-full h-full object-cover rounded-3xl transition duration-500 group-hover:scale-105"
+                            onerror="this.style.display='none'; document.getElementById('fallback-img-2').classList.remove('hidden');"
+                        >
+
+                        <div id="fallback-img-2" class="hidden absolute inset-0 bg-gradient-to-tr from-emerald-200 via-teal-100 to-amber-100 flex flex-col items-center justify-center p-6 text-center">
+                            <span class="text-6xl mb-3">🦉 🌲</span>
+                            <p class="font-fredoka font-semibold text-emerald-900 text-lg">Bilder/draußen.jpeg</p>
+                            <span class="text-xs text-emerald-800 bg-white/70 px-3 py-1 rounded-full mt-2">
+                                Datei im Ordner "Bilder" ablegen
+                            </span>
+                        </div>
+
+                        <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-xl text-xs font-fredoka text-emerald-900 shadow">
+                            📷 Bild
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 order-1 lg:order-2 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center gap-1.5 font-fredoka font-bold text-emerald-700 bg-emerald-100 px-4 py-1.5 rounded-2xl text-sm">
+                            <i class="fa-solid fa-tree text-emerald-500"></i> Kapitel 5
+                        </span>
+
+                        <button onclick="playAudio('voice/draußen.wav', this)" class="audio-btn flex items-center gap-2 bg-sky-100 hover:bg-sky-200 text-sky-800 font-fredoka text-xs sm:text-sm px-3.5 py-1.5 rounded-full transition active:scale-95">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Vorlesen</span>
+                        </button>
+                    </div>
+
+                    <h3 class="font-fredoka text-2xl sm:text-3xl font-bold text-slate-800">
+                        Draußen Spielen mit dem großen Ball
+                    </h3>
+
+                    <p id="story-text-3" class="story-paragraph text-slate-700 text-lg sm:text-xl leading-relaxed">
+                        Jetzt geht es ab nach draußen!  Im großen Garten von dem Ferienhaus kann man um die Wette rennen und Fangen spielen. 
+                        Doch was ist das denn? Einer der Erwachsenen hat einen riesigen Fußball mitgebracht. Der Ball ist größer als Felix und Jano. 
+                        Aber normalerweise ist ein Fußball doch gar nicht so groß! Mit diesem Ball zu spielen macht besonders großen Spaß. 
+                    </p>
+
+                    <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 flex items-start gap-3">
+                        <span class="text-2xl">💡</span>
+                        <p class="text-sm text-emerald-900">
+                            <strong>Mitdenk-Frage:</strong> Was kennst du noch für Bälle? Welche sind groß und welche klein?
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- ================= SEITE 6: VIDEO - Drachen ================= -->
+        <article id="seite-3" class="scroll-mt-24 bg-white/90 rounded-[2.5rem] p-6 sm:p-10 shadow-kachel hover:shadow-hover-kachel border-4 border-sky-100/80 transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+                <div class="lg:col-span-6 order-1 lg:order-2 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center gap-1.5 font-fredoka font-bold text-emerald-700 bg-emerald-100 px-4 py-1.5 rounded-2xl text-sm">
+                            <i class="fa-solid fa-tree text-emerald-500"></i> Kapitel 6
+                        </span>
+
+                        <button onclick="playAudio('voice/drachen.wav', this)" class="audio-btn flex items-center gap-2 bg-sky-100 hover:bg-sky-200 text-sky-800 font-fredoka text-xs sm:text-sm px-3.5 py-1.5 rounded-full transition active:scale-95">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Vorlesen</span>
+                        </button>
+                    </div>
+
+                    <h3 class="font-fredoka text-2xl sm:text-3xl font-bold text-slate-800">
+                        Drachen steigen lassen
+                    </h3>
+
+                    <p id="story-text-3" class="story-paragraph text-slate-700 text-lg sm:text-xl leading-relaxed">
+                       Der Wind weht. Das ist das ideale Wetter um einen Drachen steigen zu lassen. 
+                       Henri und Charlotte halten zusammen den Drachen fest, damit keiner wegfliegen kann. Doch der Drache erwischt Baby Felix an der Jacke und lässt ihn durch die Luft fliegen.
+                       Aber keine Sorge, Jano fängt Baby Felix auf und beide sind wieder sicher am Boden. Was für ein großer Spaß.
+                    </p>
+
+                    <div class="inline-block bg-sky-50 text-sky-800 text-sm px-4 py-2 rounded-2xl border border-sky-200">
+                        🎥 <strong>Schau dir das Video an:</strong> Drücke einfach auf das Play-Dreieck!
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="relative group overflow-hidden rounded-3xl bg-slate-900 border-4 border-white shadow-md aspect-video flex items-center justify-center cursor-pointer select-none" onclick="togglePlay(this)">
+                        
+                        <video 
+                            playsinline
+                            preload="metadata"
+                            poster="bilder/drachen.jpeg"
+                            class="w-full h-full object-cover rounded-3xl pointer-events-none"
+                        >
+                            <source src="video/drachen2.mp4" type="video/mp4">
+                            Dein Browser unterstützt dieses Video nicht.
+                        </video>
+
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center bg-black/25 transition-opacity duration-300">
+                            <div class="w-20 h-20 bg-amber-400 hover:bg-amber-300 text-amber-950 rounded-full flex items-center justify-center shadow-xl transform transition-transform group-hover:scale-110">
+                                <svg class="w-10 h-10 ml-1.5 fill-current" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-xl text-xs font-fredoka text-sky-900 shadow pointer-events-none">
+                            🎬 Video
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- ================= SEITE 7: BILD - GTA6 ================= -->
+        <article id="seite-7" class="scroll-mt-24 bg-white/90 rounded-[2.5rem] p-6 sm:p-10 shadow-kachel hover:shadow-hover-kachel border-4 border-amber-100/70 transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-6 order-2 lg:order-1">
+                    <div class="relative group overflow-hidden rounded-3xl bg-amber-50 border-4 border-white shadow-md aspect-4/3 flex items-center justify-center">
+                        <img 
+                            src="Bilder/tv.jpeg" 
+                            alt="Die Kinder gucken wie die Erwachsenen GTA6 spielen" 
+                            class="w-full h-full object-cover rounded-3xl transition duration-500 group-hover:scale-105"
+                            onerror="this.style.display='none'; document.getElementById('fallback-img-1').classList.remove('hidden');"
+                        >
+
+                        <div id="fallback-img-1" class="hidden absolute inset-0 bg-gradient-to-tr from-amber-200 via-orange-100 to-sky-100 flex flex-col items-center justify-center p-6 text-center">
+                            <span class="text-6xl mb-3">🐰 ☀️</span>
+                            <p class="font-fredoka font-semibold text-amber-900 text-lg">Bilder/tv.jpeg</p>
+                            <span class="text-xs text-amber-700 bg-white/70 px-3 py-1 rounded-full mt-2">
+                                Datei im Ordner "Bilder" ablegen
+                            </span>
+                        </div>
+
+                        <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-xl text-xs font-fredoka text-amber-900 shadow">
+                            📷 Bild
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 order-1 lg:order-2 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center gap-1.5 font-fredoka font-bold text-amber-600 bg-amber-100 px-4 py-1.5 rounded-2xl text-sm">
+                            <i class="fa-solid fa-star text-amber-400"></i> Kapitel 7
+                        </span>
+                        
+                        <!-- Vorlese-Button mit lokaler WAV-Datei -->
+                        <button onclick="playAudio('voice/tv.wav', this)" class="audio-btn flex items-center gap-2 bg-sky-100 hover:bg-sky-200 text-sky-800 font-fredoka text-xs sm:text-sm px-3.5 py-1.5 rounded-full transition active:scale-95">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Vorlesen</span>
+                        </button>
+                    </div>
+
+                    <h3 class="font-fredoka text-2xl sm:text-3xl font-bold text-slate-800">
+                        Große TV Aufregung 
+                    </h3>
+
+                    <p id="story-text-1" class="story-paragraph text-slate-700 text-lg sm:text-xl leading-relaxed">
+                        Nanu?!? Wo sind den alle Erwachsenen hin? Im ganzen Ferienhaus ist keiner zu finden. Wo können sie nur sein? 
+                        Henri, Charlotte, Jano und Felix hören auf einmal ein wildes Geschrei. Schnell, lass uns nachsehen wo das herkommt! 
+                        Die Kinder schauen heimlich in den Raum in dem alle Erwachsenen sitzen und gebannt auf den Fernseher starren. Keiner bemerkt die Kinder.
+                        Was gucken die denn da? Auf dem Fernseher stehen nur drei große Buchstaben und eine Zahl: GTA6 
+
+
+                    <div class="pt-2 flex items-center gap-2 text-slate-400 text-sm font-fredoka">
+                        <span>Tipp: Klicke auf "Vorlesen", um die Tonspur abzuspielen! 🔊</span>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- ================= SEITE 8: VIDEO - Gute Nacht ================= -->
+        <article id="seite-8" class="scroll-mt-24 bg-white/90 rounded-[2.5rem] p-6 sm:p-10 shadow-kachel hover:shadow-hover-kachel border-4 border-rose-100/80 transition-all duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+                <div class="lg:col-span-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center gap-1.5 font-fredoka font-bold text-rose-600 bg-rose-100 px-4 py-1.5 rounded-2xl text-sm">
+                            <i class="fa-solid fa-heart text-rose-400"></i> Kapitel 8
+                        </span>
+
+                        <button onclick="playAudio('voice/schlafen.wav', this)" class="audio-btn flex items-center gap-2 bg-sky-100 hover:bg-sky-200 text-sky-800 font-fredoka text-xs sm:text-sm px-3.5 py-1.5 rounded-full transition active:scale-95">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Vorlesen</span>
+                        </button>
+                    </div>
+
+                    <h3 class="font-fredoka text-2xl sm:text-3xl font-bold text-slate-800">
+                        Ab ins Bett
+                    </h3>
+
+                    <p id="story-text-4" class="story-paragraph text-slate-700 text-lg sm:text-xl leading-relaxed">
+                        Das war so ein toller und aufregender Tag. Alle haben so viel gelacht und Spaß gehabt. Jetzt sind alle sehr müde und müssen schnell ins Bett.
+                        Erst werden die Schlafanzüge angezogen und dann gründlich die Zähne geputzt. Jetzt geht es ab ins Bett. Alle schlafen sofort ein und träumen von dem schönen Tag. 
+                        Morgen wird es bestimmt genauso schön .... 
+                    </p>
+
+                    <div class="inline-block bg-rose-50 text-rose-800 text-sm px-4 py-2 rounded-2xl border border-rose-200">
+                        🎬 <strong>Schluss-Clip:</strong> Schlaft gut ihr kleinen Racker!
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="relative group overflow-hidden rounded-3xl bg-slate-900 border-4 border-white shadow-md aspect-video flex items-center justify-center cursor-pointer select-none" onclick="togglePlay(this)">
+                        
+                        <video 
+                            playsinline
+                            preload="metadata"
+                            poster="bilder/schlafen.jpeg"
+                            class="w-full h-full object-cover rounded-3xl pointer-events-none"
+                        >
+                            <source src="video/schlafen.mp4" type="video/mp4">
+                            Dein Browser unterstützt dieses Video nicht.
+                        </video>
+
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center bg-black/25 transition-opacity duration-300">
+                            <div class="w-20 h-20 bg-amber-400 hover:bg-amber-300 text-amber-950 rounded-full flex items-center justify-center shadow-xl transform transition-transform group-hover:scale-110">
+                                <svg class="w-10 h-10 ml-1.5 fill-current" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+    </main>
+
+    <!-- BUCHENDE -->
+    <div class="text-center my-10 px-4">
+        <div class="inline-flex flex-col items-center gap-3 bg-amber-100/70 border-2 border-amber-200 p-8 rounded-3xl max-w-lg mx-auto shadow-sm">
+            <span class="text-5xl">✨ 🌟 🌙</span>
+            <h4 class="font-fredoka font-bold text-2xl text-amber-950">Ende der Geschichten</h4>
+            <p class="text-slate-600 font-nunito text-base">
+                Haben dir die Geschichten gefallen? Du kannst jederzeit oben wieder beginnen oder die Bilder und Videos noch einmal ansehen!
+            </p>
+            <a href="#seite-1" class="mt-2 inline-flex items-center gap-2 bg-white text-amber-900 font-fredoka px-6 py-2.5 rounded-full border border-amber-300 shadow-sm hover:bg-amber-50 transition">
+                <i class="fa-solid fa-arrow-up"></i>
+                <span>Nochmal von vorn lesen</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-amber-100 py-6 px-4 text-center text-sm text-slate-500">
+        <p class="font-fredoka text-slate-600">
+            Erstellt mit 💛&🤖 für kleine Racker.
+        </p>
+    </footer>
+
+    <!-- INTERAKTIVE JAVASCRIPT-FUNKTIONEN -->
+    <script>
+        // ==========================================
+        // 1. Lokale Audio-Wiedergabe (WAV aus voice/)
+        // ==========================================
+        let currentAudio = null;
+        let currentBtn = null;
+
+        function playAudio(src, btn) {
+            // Wenn genau diese Datei schon läuft: pausieren
+            if (currentAudio && !currentAudio.paused && currentBtn === btn) {
+                currentAudio.pause();
+                resetAudioButtons();
+                return;
+            }
+
+            // Wenn gerade eine andere Seite läuft: vorherige stoppen
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                resetAudioButtons();
+            }
+
+            currentAudio = new Audio(src);
+            currentBtn = btn;
+
+            // Button auf Stop setzen
+            btn.innerHTML = '<i class="fa-solid fa-stop text-red-500"></i> <span class="text-red-600 font-bold">Stopp</span>';
+            btn.classList.add('bg-red-50', 'border', 'border-red-200');
+
+            currentAudio.play().catch(err => {
+                console.error("Audio-Wiedergabefehler:", err);
+                showMessage("Datei nicht gefunden oder blockiert: " + src);
+                resetAudioButtons();
+            });
+
+            currentAudio.onended = () => {
+                resetAudioButtons();
+            };
+        }
+
+        function resetAudioButtons() {
+            document.querySelectorAll('.audio-btn').forEach(btn => {
+                btn.innerHTML = '<i class="fa-solid fa-volume-high"></i> <span>Vorlesen</span>';
+                btn.classList.remove('bg-red-50', 'border', 'border-red-200');
+            });
+            currentAudio = null;
+            currentBtn = null;
+        }
+
+        // ==========================================
+        // 2. Video Play/Pause Steuerung mit Dreieck
+        // ==========================================
+        function togglePlay(container) {
+            const video = container.querySelector('video');
+            const overlay = container.querySelector('.play-overlay');
+
+            if (!video) return;
+
+            // Falls Vorleseton läuft, pausieren damit es sich nicht überlagert
+            if (currentAudio && !currentAudio.paused) {
+                currentAudio.pause();
+                resetAudioButtons();
+            }
+
+            if (video.paused) {
+                video.play();
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+            } else {
+                video.pause();
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            }
+
+            video.onended = () => {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            };
+        }
+
+        // ==========================================
+        // 3. Schriftgrößen-Umschalter
+        // ==========================================
+        let fontStep = 0;
+        const fontToggleBtn = document.getElementById('btn-font-toggle');
+        const storyTexts = document.querySelectorAll('.story-paragraph');
+
+        fontToggleBtn.addEventListener('click', () => {
+            fontStep = (fontStep + 1) % 3;
+            
+            storyTexts.forEach(p => {
+                p.classList.remove('text-lg', 'sm:text-xl', 'text-xl', 'sm:text-2xl', 'text-2xl', 'sm:text-3xl');
+                
+                if (fontStep === 0) {
+                    p.classList.add('text-lg', 'sm:text-xl');
+                    fontToggleBtn.querySelector('span').innerText = 'Schriftgröße: Normal';
+                } else if (fontStep === 1) {
+                    p.classList.add('text-xl', 'sm:text-2xl');
+                    fontToggleBtn.querySelector('span').innerText = 'Schriftgröße: Groß';
+                } else {
+                    p.classList.add('text-2xl', 'sm:text-3xl');
+                    fontToggleBtn.querySelector('span').innerText = 'Schriftgröße: Max';
+                }
+            });
+        });
+
+        // ==========================================
+        // 4. Hinweismeldung (Toast)
+        // ==========================================
+        function showMessage(msg) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl font-fredoka flex items-center gap-3 transition-all duration-300';
+            toast.innerHTML = `<i class="fa-solid fa-circle-info text-amber-400 text-lg"></i> <span>${msg}</span>`;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 400);
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
